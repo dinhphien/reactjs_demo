@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    container_name: blogs_client
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+      target: development
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: "npm start"
