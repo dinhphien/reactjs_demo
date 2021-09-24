@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import BlogPostList from "./BlogPostList";
-import { blogPostAdd, blogPostList } from "../actions/action";
+import { blogPostAdd, blogPostListFetch } from "../actions/action";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
@@ -10,13 +10,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  blogPostList,
   blogPostAdd,
+  blogPostListFetch,
 };
 
 class BlogPostListContainer extends Component {
   componentDidMount() {
-    this.props.blogPostList();
+    this.props.blogPostListFetch();
   }
   render() {
     return <BlogPostList posts={this.props.posts} />;

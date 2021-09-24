@@ -3,17 +3,22 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { createBrowserHistory } from "history";
 import { Provider } from "react-redux";
+import { compose } from "redux";
 import { ConnectedRouter } from "connected-react-router";
 import { Route } from "react-router";
+import thunk from "redux-thunk";
 import createRootReducer from "./reducers";
 
 const history = createBrowserHistory();
 const store = createStore(
   createRootReducer(history),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 ReactDOM.render(
   <Provider store={store}>
