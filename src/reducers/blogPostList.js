@@ -3,7 +3,7 @@ import {
   BLOG_POST_LIST_ERROR,
   BLOG_POST_LIST_RECEIVED,
   BLOG_POST_LIST_REQUEST,
-} from "../actions/action";
+} from "../actions/constants";
 
 const blogPostList = (
   state = {

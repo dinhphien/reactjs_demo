@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import BlogPostList from "./BlogPostList";
-import { blogPostAdd, blogPostListFetch } from "../actions/action";
+import { blogPostListFetch } from "../actions/action";
 import { connect } from "react-redux";
+import SpinnerCard from "./Spinner";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +11,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  blogPostAdd,
   blogPostListFetch,
 };
 
@@ -19,7 +19,11 @@ class BlogPostListContainer extends Component {
     this.props.blogPostListFetch();
   }
   render() {
-    return <BlogPostList posts={this.props.posts} />;
+    const { posts, isFetching } = this.props;
+    if (isFetching) {
+      return <SpinnerCard />;
+    }
+    return <BlogPostList posts={posts} />;
   }
 }
 export default connect(
