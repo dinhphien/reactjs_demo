@@ -16,6 +16,7 @@ import {
   USER_PROFILE_RECEIVED,
   USER_PROFILE_ERROR,
   COMMENT_ADDED,
+  USER_LOGOUT,
 } from "./constants";
 import { SubmissionError } from "redux-form";
 
@@ -155,3 +156,7 @@ export const commentAdd = (comment, blogPostId) => {
       });
   };
 };
+
+export const userLogout = () => ({
+  type: USER_LOGOUT,
+});

@@ -1,5 +1,6 @@
 import {
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
   USER_PROFILE_RECEIVED,
 } from "../actions/constants";
 
@@ -24,6 +25,13 @@ const auth = (
         ...state,
         userData: action.data,
         isAuthenticated: true,
+      };
+    case USER_LOGOUT:
+      return {
+        ...state,
+        token: null,
+        userData: null,
+        isAuthenticated: false,
       };
     default:
       return state;

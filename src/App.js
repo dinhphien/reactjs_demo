@@ -7,13 +7,14 @@ import Header from "./components/Header";
 import LoginForm from "./components/LoginForm";
 import { connect } from "react-redux";
 import { userProfileFetch } from "./actions/action";
-
+import { userLogout } from "./actions/action";
 const mapStateToProps = (state) => ({
   ...state.auth,
 });
 
 const mapDispatchToProps = {
   userProfileFetch,
+  userLogout,
 };
 class App extends React.Component {
   constructor(props) {
@@ -39,10 +40,14 @@ class App extends React.Component {
     }
   }
   render() {
-    const { isAuthenticated, userData } = this.props;
+    const { isAuthenticated, userData, userLogout } = this.props;
     return (
       <div>
-        <Header isAuthenticated={isAuthenticated} userData={userData} />
+        <Header
+          isAuthenticated={isAuthenticated}
+          userData={userData}
+          logOut={userLogout}
+        />
         <Switch>
           <Route path="/blog-post/:id" component={BlogPostContainer} />
           <Route path="/login" component={LoginForm} />

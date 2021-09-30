@@ -5,7 +5,7 @@ export default class CommentList extends Component {
   render() {
     const { commentList } = this.props;
 
-    if (commentList === null) {
+    if (commentList === null || 0 === commentList.length) {
       return <Message message="No comments yet!" />;
     }
     return (
