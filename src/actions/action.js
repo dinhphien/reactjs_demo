@@ -12,6 +12,9 @@ import {
   COMMENT_LIST_ERROR,
   COMMENT_LIST_UNLOAD,
   USER_LOGIN_SUCCESS,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_RECEIVED,
+  USER_PROFILE_ERROR,
 } from "./constants";
 import { SubmissionError } from "redux-form";
 
@@ -107,5 +110,29 @@ export const userLoginAttempt = (username, password) => {
           _error: "Username or password is invalid",
         });
       });
+  };
+};
+
+export const userProfileRequest = () => ({
+  type: USER_PROFILE_REQUEST,
+});
+
+export const userProfileReceived = (data) => ({
+  type: USER_PROFILE_RECEIVED,
+  data,
+});
+
+export const userProfileError = (error) => ({
+  type: USER_PROFILE_ERROR,
+  error,
+});
+
+export const userProfileFetch = () => {
+  return (dispatch) => {
+    userProfileRequest();
+    return requests
+      .get("/me", true)
+      .then((response) => dispatch(userProfileReceived(response.data)))
+      .catch((error) => dispatch(userProfileError(error)));
   };
 };
