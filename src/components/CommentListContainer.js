@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import { commentListFetch, commentListUnload } from "../actions/action";
 import SpinnerCard from "./Spinner";
 import CommentList from "./CommentList";
+import CommentForm from "./CommentForm";
 const mapStateToProps = (state) => ({
   ...state.commentList,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {
@@ -21,11 +23,16 @@ class CommentListContainer extends Component {
     this.props.commentListUnload();
   }
   render() {
-    const { commentList, isFetching } = this.props;
+    const { commentList, isFetching, isAuthenticated, blogPostId } = this.props;
     if (isFetching) {
       return <SpinnerCard />;
     }
-    return <CommentList commentList={commentList} />;
+    return (
+      <div>
+        <CommentList commentList={commentList} />
+        {isAuthenticated && <CommentForm blogPostId={blogPostId} />}
+      </div>
+    );
   }
 }
 

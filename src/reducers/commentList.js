@@ -1,4 +1,5 @@
 import {
+  COMMENT_ADDED,
   COMMENT_LIST_ERROR,
   COMMENT_LIST_RECEIVED,
   COMMENT_LIST_REQUEST,
@@ -36,6 +37,12 @@ const commentList = (
         ...state,
         commentList: null,
         isFetching: false,
+      };
+    case COMMENT_ADDED:
+      console.log(action.comment);
+      return {
+        ...state,
+        commentList: [...state.commentList, action.comment],
       };
     default:
       return state;

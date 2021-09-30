@@ -15,6 +15,7 @@ import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_RECEIVED,
   USER_PROFILE_ERROR,
+  COMMENT_ADDED,
 } from "./constants";
 import { SubmissionError } from "redux-form";
 
@@ -134,5 +135,23 @@ export const userProfileFetch = () => {
       .get("/me", true)
       .then((response) => dispatch(userProfileReceived(response.data)))
       .catch((error) => dispatch(userProfileError(error)));
+  };
+};
+
+export const commentAdded = (comment) => ({
+  type: COMMENT_ADDED,
+  comment,
+});
+
+export const commentAdd = (comment, blogPostId) => {
+  return (dispatch) => {
+    return requests
+      .post(`/blog/${blogPostId}/comment`, {
+        content: comment,
+      })
+      .then((response) => dispatch(commentAdded(response.data)))
+      .catch((error) => {
+        throw new SubmissionError(error.response.body.message);
+      });
   };
 };
