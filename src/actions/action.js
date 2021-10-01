@@ -34,11 +34,11 @@ export const blogPostListError = (error) => ({
   error,
 });
 
-export const blogPostListFetch = () => {
+export const blogPostListFetch = (page = 1) => {
   return (dispatch) => {
     dispatch(blogPostListRequest());
     return requests
-      .get("/blog")
+      .get(`/blog?page=${page}`)
       .then((response) => dispatch(blogPostListReceived(response)))
       .catch((error) => dispatch(blogPostListError(error)));
   };

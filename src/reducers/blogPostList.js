@@ -9,6 +9,7 @@ const blogPostList = (
   state = {
     posts: null,
     isFetching: false,
+    currentPage: 1,
   },
   action
 ) => {
@@ -17,13 +18,22 @@ const blogPostList = (
       state = {
         ...state,
         isFetching: true,
+        posts: state.currentPage === 1 ? null : state.posts,
       };
       return state;
     case BLOG_POST_LIST_RECEIVED:
+      const posts = state.posts
+        ? state.posts.concat(action.data["data"])
+        : action.data["data"];
+      const currentPage =
+        action.data["data"].length > 0
+          ? state.currentPage + 1
+          : state.currentPage;
       state = {
         ...state,
-        posts: action.data["data"],
+        posts: posts,
         isFetching: false,
+        currentPage: currentPage,
       };
       return state;
     case BLOG_POST_LIST_ERROR:
@@ -32,6 +42,7 @@ const blogPostList = (
         posts: null,
         isFetching: false,
         error: action.error.message,
+        currentPage: 1,
       };
       return state;
     case BLOG_POST_LIST_ADD:

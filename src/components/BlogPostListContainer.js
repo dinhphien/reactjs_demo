@@ -3,6 +3,7 @@ import BlogPostList from "./BlogPostList";
 import { blogPostListFetch } from "../actions/action";
 import { connect } from "react-redux";
 import SpinnerCard from "./Spinner";
+import LoadMore from "./LoadMore";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,14 +17,32 @@ const mapDispatchToProps = {
 
 class BlogPostListContainer extends Component {
   componentDidMount() {
-    this.props.blogPostListFetch();
+    const { blogPostListFetch, currentPage } = this.props;
+    if (currentPage === 1) {
+      blogPostListFetch();
+    }
   }
+
+  onLoadMoreClick() {
+    const { currentPage, blogPostListFetch } = this.props;
+    blogPostListFetch(currentPage);
+  }
+
   render() {
-    const { posts, isFetching } = this.props;
-    if (isFetching) {
+    const { posts, isFetching, currentPage } = this.props;
+    if (isFetching && currentPage === 1) {
       return <SpinnerCard />;
     }
-    return <BlogPostList posts={posts} />;
+    return (
+      <div>
+        <BlogPostList posts={posts} />
+        <LoadMore
+          label="Loadmore blog posts...."
+          onClick={this.onLoadMoreClick.bind(this)}
+          disabled={isFetching}
+        />
+      </div>
+    );
   }
 }
 export default connect(
