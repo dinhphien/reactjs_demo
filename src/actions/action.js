@@ -160,3 +160,23 @@ export const commentAdd = (comment, blogPostId) => {
 export const userLogout = () => ({
   type: USER_LOGOUT,
 });
+
+export const userRegister = (
+  username,
+  password,
+  retypedPassword,
+  name,
+  email
+) => {
+  return (dispatch) => {
+    return requests
+      .post(
+        "/register",
+        { username, password, retypedPassword, name, email },
+        false
+      )
+      .catch((error) => {
+        throw new SubmissionError(error.response.body.message);
+      });
+  };
+};
