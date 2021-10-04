@@ -1,4 +1,5 @@
 import {
+  BLOG_POST_ADDED,
   BLOG_POST_LIST_ADD,
   BLOG_POST_LIST_ERROR,
   BLOG_POST_LIST_RECEIVED,
@@ -51,6 +52,11 @@ const blogPostList = (
         posts: state.posts ? state.posts.concat(action.data) : state.posts,
       };
       return state;
+    case BLOG_POST_ADDED:
+      return {
+        ...state,
+        currentPage: 1,
+      };
     default:
       return state;
   }

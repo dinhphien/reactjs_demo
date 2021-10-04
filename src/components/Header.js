@@ -31,6 +31,13 @@ export default class Header extends Component {
               </Link>
             </li>
           )}
+          {isAuthenticated && (
+            <li className="nav-item">
+              <Link to="/write-blog" className="nav-link">
+                Create Blog
+              </Link>
+            </li>
+          )}
         </ul>
         <span className="navbar-text">
           {isAuthenticated ? (

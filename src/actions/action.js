@@ -17,6 +17,7 @@ import {
   USER_PROFILE_ERROR,
   COMMENT_ADDED,
   USER_LOGOUT,
+  BLOG_POST_ADDED,
 } from "./constants";
 import { SubmissionError } from "redux-form";
 
@@ -175,6 +176,30 @@ export const userRegister = (
         { username, password, retypedPassword, name, email },
         false
       )
+      .catch((error) => {
+        throw new SubmissionError(error.response.body.message);
+      });
+  };
+};
+
+export const blogPostAdded = (data) => ({
+  type: BLOG_POST_ADDED,
+  data,
+});
+
+export const blogPostAdd = (title, content) => {
+  return (dispatch) => {
+    return requests
+      .post(
+        "/blog/create",
+        {
+          title,
+          content,
+          slug: title && title.replace(/ /g, "-").toLowerCase(),
+        },
+        true
+      )
+      .then((response) => dispatch(blogPostAdded(response)))
       .catch((error) => {
         throw new SubmissionError(error.response.body.message);
       });
