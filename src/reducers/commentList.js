@@ -39,10 +39,9 @@ const commentList = (
         isFetching: false,
       };
     case COMMENT_ADDED:
-      console.log(action.comment);
       return {
         ...state,
-        commentList: [...state.commentList, action.comment],
+        commentList: [action.comment, ...state.commentList],
       };
     default:
       return state;
