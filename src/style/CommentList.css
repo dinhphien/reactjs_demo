@@ -1,0 +1,19 @@
+.comment-list {
+  padding: 10px 15px 15px 15px;
+  display: grid;
+  row-gap: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-content {
+  margin: 5px;
+}
+
+.comment-time {
+  font-style: italic;
+  font-size: 15px;
+  text-align: right;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "../style/Header.css";
 
 export default class Header extends Component {
   renderUser() {
@@ -8,45 +9,44 @@ export default class Header extends Component {
       return <i className="fas fa-spinner fa-spin" />;
     }
     return (
-      <span>
-        Hello {userData.name},&nbsp;
-        <button className="btn btn-link btn-sm" onClick={logOut}>
-          Logout
-        </button>
-      </span>
+      <div className="user-dropdown">
+        <span className="username">Hello {userData.name} !</span>
+        <div className="dropdown-list">
+          <p className="dropdown-item" onClick={logOut}>
+            Log out
+          </p>
+        </div>
+      </div>
     );
   }
   render() {
     const { isAuthenticated } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link to="/" className="navbar-brand">
-          Blogs
-        </Link>
-        <ul className="navbar-nav mr-auto">
-          {!isAuthenticated && (
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">
+      <div className="header">
+        <nav className="nav-bar">
+          <Link to="/" className="nav-anchor">
+            Blogs
+          </Link>
+          <div className="nav-authen">
+            {!isAuthenticated && (
+              <Link to="/register" className="nav-anchor">
                 Register
               </Link>
-            </li>
-          )}
-          {isAuthenticated && (
-            <li className="nav-item">
-              <Link to="/write-blog" className="nav-link">
+            )}
+            {!isAuthenticated && (
+              <Link to="/login" className="nav-anchor">
+                Sign in
+              </Link>
+            )}
+            {isAuthenticated && (
+              <Link to="/write-blog" className="nav-anchor">
                 Create Blog
               </Link>
-            </li>
-          )}
-        </ul>
-        <span className="navbar-text">
-          {isAuthenticated ? (
-            this.renderUser()
-          ) : (
-            <Link to="/login">Sign in</Link>
-          )}
-        </span>
-      </nav>
+            )}
+          </div>
+          {isAuthenticated && this.renderUser()}
+        </nav>
+      </div>
     );
   }
 }

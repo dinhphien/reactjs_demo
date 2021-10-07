@@ -1,0 +1,18 @@
+.form-authen {
+  width: 500px;
+  display: grid;
+  row-gap: 20px;
+  justify-content: center;
+  background-color: #f5f3f3;
+  padding: 30px;
+}
+
+.btn-submit {
+  font-size: 20px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

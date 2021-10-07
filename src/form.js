@@ -1,8 +1,9 @@
 import React from "react";
 import classNames from "classnames";
+import "./style/Form.css";
 
 export const renderField = ({ input, label, type, meta: { error } }) => {
-  const classes = classNames("form-control", {
+  const classes = classNames("form-input", {
     "is-invalid": error,
   });
   return (
@@ -12,7 +13,7 @@ export const renderField = ({ input, label, type, meta: { error } }) => {
         <input {...input} type={type} className={classes}></input>
       )}
       {type === "textarea" && <textarea {...input} className={classes} />}
-      {error && <small className="form-text text-danger">{error}</small>}
+      {error && <small className="text-error">{error}</small>}
     </div>
   );
 };

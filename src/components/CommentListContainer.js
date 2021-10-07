@@ -28,9 +28,9 @@ class CommentListContainer extends Component {
       return <SpinnerCard />;
     }
     return (
-      <div>
-        <CommentList commentList={commentList} />
+      <div className="comment-part">
         {isAuthenticated && <CommentForm blogPostId={blogPostId} />}
+        <CommentList commentList={commentList} />
       </div>
     );
   }

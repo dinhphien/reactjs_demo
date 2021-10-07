@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { format } from "timeago.js";
 import Message from "./Message";
+import "../style/BlogDetail.css";
 
 export default class BlogPost extends Component {
   render() {
@@ -11,14 +12,13 @@ export default class BlogPost extends Component {
     }
 
     return (
-      <div className="card mb-3 mt-3 shadow-sm">
-        <div className="card-body">
-          <h2>{post.title}</h2>
-          <p className="card-text">{post.content}</p>
-          <p className="card-text">
-            <small className="text-muted">{format(post.published)}</small>
-          </p>
-        </div>
+      <div className="blog-detail">
+        <h2 className="blog-title">{post.title}</h2>
+        <p className="blog-content">{post.content}</p>
+        <p className="detail-author">
+          {format(post.published)} by&nbsp;
+          {post.author.name}
+        </p>
       </div>
     );
   }

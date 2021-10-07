@@ -1,0 +1,20 @@
+.form-blog {
+  width: 700px;
+  display: grid;
+  row-gap: 20px;
+  padding: 30px;
+  background-color: #f5f3f3;
+  justify-items: center;
+}
+
+.blog-submit {
+  font-size: 20px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 50%;
+  align-self: center;
+}

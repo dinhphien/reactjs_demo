@@ -1,0 +1,5 @@
+.blog-container {
+  display: grid;
+  width: 750px;
+  row-gap: 20px;
+}

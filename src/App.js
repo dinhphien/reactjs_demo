@@ -10,6 +10,7 @@ import { userProfileFetch } from "./actions/action";
 import { userLogout } from "./actions/action";
 import RegistrationForm from "./components/RegistrationForm";
 import BlogPostForm from "./components/BlogPostForm";
+import "./App.css";
 const mapStateToProps = (state) => ({
   ...state.auth,
 });
@@ -44,7 +45,7 @@ class App extends React.Component {
   render() {
     const { isAuthenticated, userData, userLogout } = this.props;
     return (
-      <div>
+      <div className="App">
         <Header
           isAuthenticated={isAuthenticated}
           userData={userData}

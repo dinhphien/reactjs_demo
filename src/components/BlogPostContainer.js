@@ -4,6 +4,7 @@ import { blogPostFetch, blogPostUnload } from "../actions/action";
 import BlogPost from "./BlogPost";
 import CommentListContainer from "./CommentListContainer";
 import SpinnerCard from "./Spinner";
+import "../style/BlogPostContainer.css";
 
 const mapStateToProps = (state) => ({
   ...state.blogPost,
@@ -27,7 +28,7 @@ class BlogPostContainer extends Component {
       return <SpinnerCard />;
     }
     return (
-      <div>
+      <div className="blog-container">
         <BlogPost post={post} />
         {post && (
           <CommentListContainer blogPostId={this.props.match.params.id} />
