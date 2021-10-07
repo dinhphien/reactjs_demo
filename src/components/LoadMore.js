@@ -12,7 +12,6 @@ export default function LoadMore(props) {
   useEffect(() => {
     if (inView) {
       loadBlog();
-      console.log("loadMore blog!");
     }
   }, [inView]);
 
