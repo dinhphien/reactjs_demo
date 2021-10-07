@@ -36,11 +36,7 @@ class BlogPostListContainer extends Component {
     return (
       <div>
         <BlogPostList posts={posts} />
-        <LoadMore
-          label="Loadmore blog posts...."
-          onClick={this.onLoadMoreClick.bind(this)}
-          disabled={isFetching}
-        />
+        <LoadMore loadBlog={this.onLoadMoreClick.bind(this)} />
       </div>
     );
   }
